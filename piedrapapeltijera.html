@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    
+    
+</head>
+
+<body>
+    
+    <p>Elije una opción</p>
+    
+        
+    <input type="radio" name="eleccion" id="boton1" value="1">Piedra
+    <input type="radio" name="eleccion" id="boton2" value="2">Papel
+    <input type="radio" name="eleccion" id="boton3" value="3">Tijera
+    <p id="jugadas"></p>   
+</body>
+</html>
+
+
+<script>
+var jugada=["","piedra","papel","tijera"];
+$('input[type="radio"]').click(function(){
+        var jugada_jugador = $(this).attr('value');
+        var jugada_maquina = numeroAleatorio();
+    $('#jugadas').html('tu has sacado '+jugada[jugada_jugador]+' y yo he sacado '+jugada[jugada_maquina]);
+
+    
+    if(jugada_jugador==jugada_maquina){ //Empate
+        alert("Empate");
+    }
+    
+    if(jugada_jugador==1 && jugada_maquina==3){  //Piedra
+        alert("Gana jugador");
+    }
+    
+    if(jugada_jugador==1 && jugada_maquina==2){
+        alert("Gana PC");
+    }
+    
+    if(jugada_jugador==2 && jugada_maquina==1){  //Papel
+        alert("Gana jugador");
+    }
+    
+    if(jugada_jugador==2 && jugada_maquina==3){ 
+        alert("Gana PC");
+    }
+    
+    if(jugada_jugador==3 && jugada_maquina==1){  // Tijera
+        alert("Gana PC");
+    }
+    
+    if(jugada_jugador==3 && jugada_maquina==2){ 
+        alert("Gana jugador");
+    }
+});
+    
+
+function numeroAleatorio() {
+  return Math.floor(Math.random() * 3) + 1;
+}
+
+
+
+</script>
