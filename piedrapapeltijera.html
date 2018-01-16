@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="">
+    
 <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    
-   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     
     
 </head>
@@ -17,48 +16,73 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     <p>Elije una opción</p>
     
         
-    <input type="radio" name="eleccion" id="boton1" value="1">Piedra
-    <input type="radio" name="eleccion" id="boton2" value="2">Papel
-    <input type="radio" name="eleccion" id="boton3" value="3">Tijera
-    <p id="jugadas"></p>   
+    <img alt="1" src="img/piedra.png">
+    <img alt="2" src="img/papel.png">
+    <img alt="3" src="img/tijera.png">
+    
+    <div class="puntJUG">0</div>
+    <div class="puntCPU">0</div>
+    
+    <p id="jugadas"></p>
+    
 </body>
+    
 </html>
 
 
+
+
+
 <script>
-var jugada=["","piedra","papel","tijera"];
-$('input[type="radio"]').click(function(){
-        var jugada_jugador = $(this).attr('value');
+
+    var jugada=["","piedra","papel","tijera"];
+    
+    $("img").click(function(){
+        
+        var jugada_jugador = $(this).attr('alt');
         var jugada_maquina = numeroAleatorio();
-    $('#jugadas').html('tu has sacado '+jugada[jugada_jugador]+' y yo he sacado '+jugada[jugada_maquina]);
+    
+        $('#jugadas').html('tu has sacado '+jugada[jugada_jugador]+' y yo he sacado '+jugada[jugada_maquina]);
 
     
-    if(jugada_jugador==jugada_maquina){ //Empate
-        alert("Empate");
+        if(jugada_jugador==jugada_maquina){ //Empate
+            alert("Empate");
+        }
+    
+        else if(jugada_jugador==1 && jugada_maquina==3){  //Piedra
+        
+            alert("Gana jugador");
+            sumaJUG();
+        }
+    
+        else if(jugada_jugador==1 && jugada_maquina==2){
+        
+            alert("Gana PC");
+            sumaCPU();
+        }
+    
+        else if(jugada_jugador==2 && jugada_maquina==1){  //Papel
+        
+            alert("Gana jugador");
+            sumaJUG();
+        }
+    
+        else if(jugada_jugador==2 && jugada_maquina==3){ 
+        
+            alert("Gana PC");
+            sumaCPU();
     }
     
-    if(jugada_jugador==1 && jugada_maquina==3){  //Piedra
-        alert("Gana jugador");
+        else if(jugada_jugador==3 && jugada_maquina==1){  // Tijera
+        
+            alert("Gana PC");
+            sumaCPU();
     }
     
-    if(jugada_jugador==1 && jugada_maquina==2){
-        alert("Gana PC");
-    }
-    
-    if(jugada_jugador==2 && jugada_maquina==1){  //Papel
-        alert("Gana jugador");
-    }
-    
-    if(jugada_jugador==2 && jugada_maquina==3){ 
-        alert("Gana PC");
-    }
-    
-    if(jugada_jugador==3 && jugada_maquina==1){  // Tijera
-        alert("Gana PC");
-    }
-    
-    if(jugada_jugador==3 && jugada_maquina==2){ 
-        alert("Gana jugador");
+        else if(jugada_jugador==3 && jugada_maquina==2){ 
+        
+            alert("Gana jugador");
+            sumaJUG();
     }
 });
     
@@ -67,6 +91,21 @@ function numeroAleatorio() {
   return Math.floor(Math.random() * 3) + 1;
 }
 
-
-
+function sumaJUG(){
+    
+    var actual = parseInt($('.puntJUG').html());
+        actual += parseInt(1);
+        $('.puntJUG').html(actual);
+    
+}
+    
+function sumaCPU(){
+    
+    var actual = parseInt($('.puntCPU').html());
+        actual += parseInt(1);
+        $('.puntCPU').html(actual);
+    
+    
+}
+    
 </script>
